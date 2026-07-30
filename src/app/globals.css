@@ -283,12 +283,65 @@ body {
 .mbtn:hover { --mbs: 1.05; }
 .mbtn:active { --mbs: 0.97; }
 
+/* ---- Brand „probuzení produktu" (≤1 s, jen CSS transform/opacity) ---- */
+@keyframes wakeZoom {
+  from { transform: scale(1.035); }
+  to { transform: scale(1); }
+}
+@keyframes wakeReveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes eyeCoverOff {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes eyeGlowOn {
+  0% { opacity: 0; transform: scale(0.55); }
+  60% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.78; transform: scale(1.05); }
+}
+
+.hero-wake { animation: wakeZoom 0.9s var(--ease-out-soft) both; will-change: transform; }
+.hero-reveal {
+  opacity: 0;
+  animation: wakeReveal 0.8s var(--ease-out-soft) var(--hr-delay, 0s) both;
+  will-change: opacity, transform;
+}
+
+.eye {
+  position: absolute;
+  width: 11%;
+  height: 9%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.eye-cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(9, 11, 15, 0.97), rgba(9, 11, 15, 0.82) 42%, transparent 74%);
+  animation: eyeCoverOff 0.35s var(--ease-out-soft) var(--cover-delay, 0.3s) both;
+}
+.eye-glow {
+  position: absolute;
+  inset: -35%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(140, 185, 255, 0.9), rgba(96, 150, 255, 0.4) 45%, transparent 72%);
+  opacity: 0;
+  animation: eyeGlowOn 0.55s var(--ease-out-soft) var(--glow-delay, 0.35s) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bob, .marquee-track,
   .anim-gradient, .anim-ray, .anim-glow, .anim-arrow { animation: none !important; }
   .reveal, .img-reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
   .mbtn { transition: none !important; }
   .mbtn:hover, .mbtn:active { --mbs: 1; }
+  .hero-wake { animation: none !important; transform: none !important; }
+  .hero-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .eye-cover { animation: none !important; opacity: 0 !important; }
+  .eye-glow { animation: none !important; opacity: 0.75 !important; transform: scale(1) !important; }
   html { scroll-behavior: auto; }
 }
 

@@ -1,57 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, type CSSProperties } from "react";
 import {
   motion,
-  AnimatePresence,
   useMotionValue,
   useSpring,
   useTransform,
   useVelocity,
   useScroll,
   useReducedMotion,
-  type Variants,
   type MotionValue,
 } from "framer-motion";
 import MagneticButton from "./MagneticButton";
 import BuyButton from "./BuyButton";
 import { images, priceLabel } from "@/lib/product";
 
-/* signaturní křivky */
-const EASE = [0.22, 1, 0.36, 1] as const; // expo out
-const EASE_OUT = [0.16, 1, 0.3, 1] as const; // měkký doběh
-
-/* pružiny s váhou (sklo) */
+/* pružiny s váhou (ambient život hera) */
 const SPRING_FOLLOW = { stiffness: 90, damping: 20, mass: 0.7 } as const;
 const SPRING_SPOT = { stiffness: 110, damping: 20, mass: 0.5 } as const;
 const SPRING_SCROLL = { stiffness: 80, damping: 26, restDelta: 0.0004 } as const;
 
-const introWords = ["Čistě.", "Uklizeně.", "Bez námahy."];
 const headlineWords = ["Nejchytřejší", "způsob,", "jak", "mít", "čistý", "stůl."];
-
-const wordIn: Variants = {
-  hidden: { opacity: 0, y: "0.5em", filter: "blur(12px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: EASE_OUT } },
-  exit: { opacity: 0, y: "-0.35em", filter: "blur(14px)", transition: { duration: 0.5, ease: EASE } },
-};
-const introContainer: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } },
-  exit: { opacity: 0, scale: 1.08, filter: "blur(12px)", transition: { duration: 0.55, ease: EASE } },
-};
-const headlineContainer: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.7, ease: EASE_OUT, staggerChildren: 0.07, delayChildren: 0.06 },
-  },
-};
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: EASE_OUT } },
-};
 
 /* deterministický PRNG → žádný hydration mismatch */
 function mulberry32(seed: number) {
@@ -67,15 +37,6 @@ function mulberry32(seed: number) {
 export default function Hero() {
   const reduce = !!useReducedMotion();
   const ref = useRef<HTMLElement>(null);
-
-  /* fáze textu (zvednutá kvůli návaznosti podnadpisu/CTA) */
-  const [phase, setPhase] = useState<"words" | "headline">(reduce ? "headline" : "words");
-  useEffect(() => {
-    if (reduce) return;
-    const t = setTimeout(() => setPhase("headline"), 1500);
-    return () => clearTimeout(t);
-  }, [reduce]);
-  const revealed = phase === "headline";
 
   /* kurzor */
   const nx = useMotionValue(0.5);
@@ -96,14 +57,14 @@ export default function Hero() {
     pyv.set(e.clientY - r.top);
   }
 
-  /* parallaxy vrstev (různé rychlosti) */
+  /* parallaxy vrstev */
   const l2x = useTransform(nxs, [0, 1], [30, -30]);
   const l2y = useTransform(nys, [0, 1], [20, -20]);
   const l3x = useTransform(nxs, [0, 1], [-18, 18]);
   const l3y = useTransform(nys, [0, 1], [-14, 14]);
   const l4x = useTransform(nxs, [0, 1], [12, -12]);
 
-  /* produkt: náklon, záře, odlesk reagující na rychlost */
+  /* produkt: náklon, záře, odlesk */
   const rotY = useTransform(nxs, [0, 1], [11, -11]);
   const rotX = useTransform(nys, [0, 1], [-8, 8]);
   const glowX = useTransform(nxs, [0, 1], [-30, 30]);
@@ -114,7 +75,7 @@ export default function Hero() {
   const reflOpacityRaw = useTransform(nxVel, (v) => Math.min(0.8, 0.3 + Math.abs(v) * 0.16));
   const reflOpacity = useSpring(reflOpacityRaw, { stiffness: 90, damping: 26 });
 
-  /* spotlight sledující kurzor */
+  /* spotlight */
   const spotX = useTransform(pxs, (v) => v - 320);
   const spotY = useTransform(pys, (v) => v - 320);
 
@@ -201,52 +162,25 @@ export default function Hero() {
         className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center gap-5 px-6 pt-24 pb-20 text-center sm:gap-6 sm:pt-28"
       >
         {/* eyebrow */}
-        <motion.span
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          transition={{ delay: 0.1 }}
-          className="inline-flex items-center gap-2 rounded-full border border-line-2 bg-white/55 px-4 py-1.5 text-xs font-medium tracking-wide text-ink-2 backdrop-blur-md"
+        <span
+          className="hero-reveal inline-flex items-center gap-2 rounded-full border border-line-2 bg-white/55 px-4 py-1.5 text-xs font-medium tracking-wide text-ink-2 backdrop-blur-md"
+          style={{ "--hr-delay": "0.05s" } as CSSProperties}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-sky-deep" />
           Představujeme Cleaner
-        </motion.span>
+        </span>
 
-        {/* headline: slova → morph do věty */}
-        <div className="relative h-[clamp(8rem,19vh,11rem)] w-full">
-          <AnimatePresence>
-            {phase === "words" ? (
-              <motion.h1
-                key="words"
-                variants={introContainer}
-                initial="hidden"
-                animate="show"
-                exit="exit"
-                className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 font-display text-3xl font-semibold italic leading-[1.08] tracking-tight text-ink will-change-transform sm:text-4xl lg:text-5xl"
-              >
-                {introWords.map((w) => (
-                  <motion.span key={w} variants={wordIn}>
-                    {w}
-                  </motion.span>
-                ))}
-              </motion.h1>
-            ) : (
-              <motion.h1
-                key="headline"
-                variants={headlineContainer}
-                initial="hidden"
-                animate="show"
-                className="absolute inset-0 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-4xl font-extrabold leading-[1.05] tracking-tight text-ink will-change-transform sm:text-5xl lg:text-6xl"
-              >
-                {headlineWords.map((w, i) => (
-                  <motion.span key={i} variants={wordIn} className={i >= 4 ? "text-sky-deep" : ""}>
-                    {w}
-                  </motion.span>
-                ))}
-              </motion.h1>
-            )}
-          </AnimatePresence>
-        </div>
+        {/* hlavní nadpis — elegantně se objeví během probuzení */}
+        <h1
+          className="hero-reveal flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl"
+          style={{ "--hr-delay": "0.25s" } as CSSProperties}
+        >
+          {headlineWords.map((w, i) => (
+            <span key={i} className={i >= 4 ? "text-sky-deep" : ""}>
+              {w}
+            </span>
+          ))}
+        </h1>
 
         {/* produkt */}
         <ProductStage
@@ -262,25 +196,19 @@ export default function Hero() {
           prodScrollY={reduce ? undefined : prodScrollY}
         />
 
-        {/* subheadline — naváže na morph */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate={revealed ? "show" : "hidden"}
-          transition={{ delay: 0.15 }}
-          className="max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+        {/* subheadline */}
+        <p
+          className="hero-reveal max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+          style={{ "--hr-delay": "0.5s" } as CSSProperties}
         >
           Stolní vysavač do dlaně, který drobky, prach i nečistoty zvládne
           jediným stiskem — tiše, elegantně a bez kabelů.
-        </motion.p>
+        </p>
 
         {/* CTA */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={revealed ? "show" : "hidden"}
-          transition={{ delay: 0.28 }}
-          className="flex flex-col items-center gap-3 sm:flex-row"
+        <div
+          className="hero-reveal flex flex-col items-center gap-3 sm:flex-row"
+          style={{ "--hr-delay": "0.62s" } as CSSProperties}
         >
           <BuyButton variant="primary">
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -294,23 +222,21 @@ export default function Hero() {
             Jak to funguje
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </MagneticButton>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* scroll cue */}
-      <motion.a
+      <a
         href="#how"
         aria-label="Posunout níže"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: revealed ? 1 : 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="absolute inset-x-0 bottom-6 z-10 mx-auto flex w-fit flex-col items-center gap-1.5 text-muted"
+        className="hero-reveal absolute inset-x-0 bottom-6 z-10 mx-auto flex w-fit flex-col items-center gap-1.5 text-muted"
+        style={{ "--hr-delay": "0.8s" } as CSSProperties}
       >
         <span className="text-[0.7rem] uppercase tracking-[0.2em]">Objevte více</span>
         <span className="anim-arrow flex h-9 w-6 items-start justify-center rounded-full border border-line-2 pt-1.5">
           <span className="h-2 w-1 rounded-full bg-ink/50" />
         </span>
-      </motion.a>
+      </a>
 
       {/* morph do další sekce */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-40 bg-gradient-to-b from-transparent to-paper" />
@@ -318,7 +244,7 @@ export default function Hero() {
   );
 }
 
-/* ---------- produkt: vrstvené transformace (entrance → scroll → float → tilt) ---------- */
+/* ---------- produkt: probuzení + scroll + float + tilt ---------- */
 function ProductStage({
   reduce,
   rotX,
@@ -364,16 +290,11 @@ function ProductStage({
         />
       </div>
 
-      {/* 1) entrance (jednorázově, pružina s váhou) */}
-      <motion.div
-        initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.84, y: 44 }}
-        animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-        transition={reduce ? { duration: 0.5 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-        className="relative"
-      >
-        {/* 2) scroll */}
+      {/* PROBUZENÍ: jemný zoom-out (produkt je vidět hned) */}
+      <div className="hero-wake relative">
+        {/* scroll */}
         <motion.div style={{ scale: prodScale, y: prodScrollY }}>
-          {/* 3) organické vznášení (dvě frekvence) */}
+          {/* organické vznášení */}
           <motion.div
             animate={reduce ? undefined : { y: [0, -16, 0], rotate: [-1, 1.2, -1] }}
             transition={{
@@ -382,7 +303,7 @@ function ProductStage({
             }}
             className="will-change-transform"
           >
-            {/* 4) náklon za myší */}
+            {/* náklon za myší */}
             <motion.div style={{ rotateX: rotX, rotateY: rotY }} className="relative [transform-style:preserve-3d] will-change-transform">
               <div className="relative aspect-square h-[clamp(168px,29vh,320px)] w-auto">
                 <Image
@@ -394,6 +315,17 @@ function ProductStage({
                   className="select-none object-contain"
                   draggable={false}
                 />
+
+                {/* PROBUZENÍ OČÍ: skla zhasnou → rozsvítí se zleva doprava */}
+                <span className="eye" style={{ left: "40%", top: "41%", "--cover-delay": "0.3s", "--glow-delay": "0.35s" } as CSSProperties}>
+                  <span className="eye-glow" />
+                  <span className="eye-cover" />
+                </span>
+                <span className="eye" style={{ left: "53%", top: "41%", "--cover-delay": "0.45s", "--glow-delay": "0.5s" } as CSSProperties}>
+                  <span className="eye-glow" />
+                  <span className="eye-cover" />
+                </span>
+
                 {/* odlesk — pozice dle kurzoru, jas dle rychlosti */}
                 {!reduce && (
                   <motion.div style={{ x: reflX, opacity: reflOpacity }} className="pointer-events-none absolute inset-0 mix-blend-overlay">
@@ -404,7 +336,7 @@ function ProductStage({
             </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }
