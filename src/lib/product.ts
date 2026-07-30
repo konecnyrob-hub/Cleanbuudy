@@ -48,7 +48,6 @@ export const images = {
  * TODO: doplnit reálné hodnoty. Kvalitativní údaje níže vycházejí ze zadání.
  * ------------------------------------------------------------------------- */
 export const specs: { label: string; value: string }[] = [
-  { label: "Režimy sání", value: "3 (jemný / běžný / turbo)" }, // dle zadání
   { label: "Dobíjení", value: "USB" }, // TODO: potvrdit konektor (USB‑C?)
   { label: "Ovládání", value: "Jedno tlačítko" }, // dle zadání
   { label: "Nádoba na prach", value: "Opakovaně použitelná" }, // dle zadání

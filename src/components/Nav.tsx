@@ -7,7 +7,7 @@ import BuyButton from "./BuyButton";
 const links = [
   { label: "Proč Cleaner", href: "/#why" },
   { label: "Jak to funguje", href: "/#how" },
-  { label: "Výkon", href: "/#power" },
+  { label: "Použití", href: "/#pouziti" },
   { label: "Parametry", href: "/#specs" },
   { label: "Kontakt", href: "/kontakt" },
 ];

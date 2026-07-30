@@ -3,7 +3,7 @@ import BenefitStrip from "@/components/BenefitStrip";
 import Marquee from "@/components/Marquee";
 import Benefits from "@/components/Benefits";
 import HowItWorks from "@/components/HowItWorks";
-import SpeedModes from "@/components/SpeedModes";
+import EverydayHelper from "@/components/EverydayHelper";
 import Surfaces from "@/components/Surfaces";
 import Reassure from "@/components/Reassure";
 import InBox from "@/components/InBox";
@@ -21,7 +21,7 @@ export default function Home() {
       <Marquee />
       <Benefits />
       <HowItWorks />
-      <SpeedModes />
+      <EverydayHelper />
       <Surfaces />
       <Reassure />
       <InBox />

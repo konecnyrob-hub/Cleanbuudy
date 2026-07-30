@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: "Vyčistí opravdu mezery mezi klávesami?",
-    a: "Ano. Úzká hubice je tvarovaná tak, aby se dostala mezi klávesy i k jejich okrajům. Jemný režim zvedne prach a drobky, aniž by tahal za klávesnice.",
+    a: "Ano. Úzká hubice je tvarovaná tak, aby se dostala mezi klávesy i k jejich okrajům, a šetrně zvedne prach a drobky, aniž by tahala za klávesy.",
   },
   {
     q: "Musím dokupovat sáčky nebo filtry?",
