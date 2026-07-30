@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+/* ============================================================
+   CLEANER — premium desk-vacuum brand
+   Warm porcelain palette · editorial minimalism · quiet motion
+   ============================================================ */
+
+@theme {
+  /* Surfaces */
+  --color-paper: #f3efe7;
+  --color-paper-2: #ece7dc;
+  --color-surface: #fbf9f4;
+  --color-card: #ffffff;
+
+  /* Ink */
+  --color-ink: #1a1813;
+  --color-ink-2: #35322a;
+  --color-muted: #6d685d;
+  --color-faint: #9a948785;
+
+  /* Accent — sage mist */
+  --color-sage: #6f8a7d;
+  --color-sage-deep: #3f5449;
+  --color-sage-soft: #cfe0d6;
+  --color-glow: #e4efe7;
+
+  /* Accent — limetka (hero) */
+  --color-lime: #bcd63f;
+  --color-lime-600: #a9c22f;
+  --color-lime-deep: #7c991b;
+  --color-lime-soft: #eef4d6;
+
+  /* Hero — chladná modrá záře (Apple/Nothing) */
+  --color-sky-soft: #eaf1ff;
+  --color-sky-glow: #cbddff;
+  --color-sky-deep: #9db8ff;
+  --color-mist: #f4f7fb;
+
+  /* Lines */
+  --color-line: #1a181315;
+  --color-line-2: #1a18130f;
+
+  /* Type */
+  --font-display: "Fraunces", "Hoefler Text", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Easing */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Radii */
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2.25rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01";
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-sage);
+  color: #fff;
+}
+
+/* Fine grain / paper texture overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Display type helpers */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.9rem 1.6rem;
+  transition: transform 0.4s var(--ease-out-soft), background-color 0.3s, color 0.3s, box-shadow 0.4s;
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-surface);
+  box-shadow: 0 10px 30px -12px rgba(26, 24, 19, 0.6);
+}
+.btn-primary:hover {
+  background: var(--color-sage-deep);
+  box-shadow: 0 18px 40px -14px rgba(63, 84, 73, 0.7);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+.btn-ghost:hover {
+  background: var(--color-card);
+}
+.btn-lime {
+  background: var(--color-lime);
+  color: var(--color-ink);
+  box-shadow: 0 12px 30px -12px rgba(150, 180, 40, 0.65);
+}
+.btn-lime:hover {
+  background: var(--color-lime-600);
+  box-shadow: 0 18px 40px -14px rgba(150, 180, 40, 0.75);
+}
+
+/* Soft card */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-line-2);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 30px 60px -40px rgba(26, 24, 19, 0.25);
+}
+
+/* Section rhythm */
+.section {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(5rem, 11vw, 9rem);
+}
+.container-x {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+/* Floating product bob */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+  50% { transform: translateY(-14px) rotate(0.5deg); }
+}
+.bob { animation: bob 7s ease-in-out infinite; }
+
+/* Rotating LED sweep */
+@keyframes sweep {
+  to { transform: rotate(360deg); }
+}
+
+/* Rising dust motes */
+@keyframes rise {
+  0% { transform: translateY(20px) scale(0.6); opacity: 0; }
+  20% { opacity: 0.9; }
+  100% { transform: translateY(-120px) scale(1); opacity: 0; }
+}
+
+/* Draw-in stroke */
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ---- Hero immersive layers ---- */
+@keyframes gradientPan {
+  0%, 100% { transform: translate3d(-2%, -1%, 0) scale(1.1); }
+  50% { transform: translate3d(2%, 1.5%, 0) scale(1.16); }
+}
+@keyframes rayShift {
+  0%, 100% { transform: translateX(-5%) rotate(9deg); opacity: 0.28; }
+  50% { transform: translateX(5%) rotate(9deg); opacity: 0.5; }
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.82; transform: scale(1.06); }
+}
+@keyframes moteDrift {
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(7px, -14px, 0); }
+  50% { transform: translate3d(-4px, -28px, 0); }
+  75% { transform: translate3d(9px, -16px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+@keyframes ripple {
+  to { transform: translate(-50%, -50%) scale(30); opacity: 0; }
+}
+.anim-gradient { animation: gradientPan 22s ease-in-out infinite; will-change: transform; }
+.anim-ray { animation: rayShift 14s ease-in-out infinite; will-change: transform, opacity; }
+.anim-glow { animation: glowPulse 6.5s ease-in-out infinite; will-change: transform, opacity; }
+.anim-arrow { animation: arrowBob 1.9s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bob, .marquee-track,
+  .anim-gradient, .anim-ray, .anim-glow, .anim-arrow { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---- Právní / informační stránky ---- */
+.prose-legal {
+  color: var(--color-ink-2);
+  line-height: 1.75;
+  font-size: 0.975rem;
+}
+.prose-legal h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 2.5rem 0 0.75rem;
+}
+.prose-legal h3 {
+  font-weight: 600;
+  color: var(--color-ink);
+  margin: 1.5rem 0 0.5rem;
+}
+.prose-legal p { margin: 0.7rem 0; color: var(--color-muted); }
+.prose-legal ul { margin: 0.7rem 0; padding-left: 1.25rem; list-style: disc; color: var(--color-muted); }
+.prose-legal ol { margin: 0.7rem 0; padding-left: 1.35rem; list-style: decimal; color: var(--color-muted); }
+.prose-legal li { margin: 0.35rem 0; }
+.prose-legal strong { color: var(--color-ink); font-weight: 600; }
+.prose-legal a { color: var(--color-sage-deep); text-decoration: underline; text-underline-offset: 2px; }
+.prose-legal hr { margin: 2rem 0; border: 0; border-top: 1px solid var(--color-line); }
+
+/* zvýraznění míst k doplnění firemních údajů */
+.todo {
+  background: var(--color-lime-soft);
+  color: var(--color-lime-deep);
+  padding: 0.05rem 0.35rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
