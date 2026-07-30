@@ -72,7 +72,7 @@ export default function Hero() {
   const [phase, setPhase] = useState<"words" | "headline">(reduce ? "headline" : "words");
   useEffect(() => {
     if (reduce) return;
-    const t = setTimeout(() => setPhase("headline"), 2200);
+    const t = setTimeout(() => setPhase("headline"), 1500);
     return () => clearTimeout(t);
   }, [reduce]);
   const revealed = phase === "headline";
@@ -368,7 +368,7 @@ function ProductStage({
       <motion.div
         initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.84, y: 44 }}
         animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-        transition={reduce ? { duration: 0.6 } : { type: "spring", stiffness: 68, damping: 15, mass: 1, delay: 0.15 }}
+        transition={reduce ? { duration: 0.5 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
         className="relative"
       >
         {/* 2) scroll */}

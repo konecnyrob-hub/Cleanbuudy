@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const faqs = [
@@ -74,19 +73,21 @@ export default function Faq() {
                       </svg>
                     </span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
-                        className="overflow-hidden"
+                  <div
+                    className={`grid transition-[grid-template-rows] duration-500 ease-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p
+                        className={`max-w-xl pb-6 leading-relaxed text-muted transition-opacity duration-300 ${
+                          isOpen ? "opacity-100" : "opacity-0"
+                        }`}
                       >
-                        <p className="max-w-xl pb-6 leading-relaxed text-muted">{f.a}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        {f.a}
+                      </p>
+                    </div>
+                  </div>
                 </li>
               );
             })}

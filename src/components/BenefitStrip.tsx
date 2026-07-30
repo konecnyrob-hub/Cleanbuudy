@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 const benefits = [
   {
@@ -41,30 +39,17 @@ const benefits = [
   },
 ];
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
 export default function BenefitStrip() {
   return (
     <section aria-label="Hlavní výhody" className="relative z-[2] pb-6">
       <div className="container-x">
-        <motion.ul
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid gap-4 rounded-[2rem] border border-line-2 bg-surface/70 p-5 backdrop-blur sm:grid-cols-2 sm:p-6 lg:grid-cols-4"
-        >
-          {benefits.map((b) => (
-            <motion.li
+        <ul className="grid gap-4 rounded-[2rem] border border-line-2 bg-surface/70 p-5 backdrop-blur sm:grid-cols-2 sm:p-6 lg:grid-cols-4">
+          {benefits.map((b, i) => (
+            <Reveal
+              as="li"
               key={b.title}
-              variants={item}
+              delay={i * 0.1}
+              y={20}
               className="flex items-start gap-4 rounded-2xl p-3 transition-colors duration-300 hover:bg-card"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-lime-soft text-lime-deep">
@@ -84,9 +69,9 @@ export default function BenefitStrip() {
                 <h3 className="text-[0.95rem] font-semibold leading-tight">{b.title}</h3>
                 <p className="mt-1 text-sm leading-relaxed text-muted">{b.body}</p>
               </div>
-            </motion.li>
+            </Reveal>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );
