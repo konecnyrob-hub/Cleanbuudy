@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 
 // Finální doména e-shopu (OG / canonical). Lze přepsat env proměnnou NEXT_PUBLIC_SITE_URL.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cleanner.cz";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cleanner.cz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
