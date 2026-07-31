@@ -8,7 +8,6 @@ const links = [
   { label: "Proč Cleaner", href: "/#why" },
   { label: "Jak to funguje", href: "/#how" },
   { label: "Použití", href: "/#pouziti" },
-  { label: "Parametry", href: "/#specs" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
