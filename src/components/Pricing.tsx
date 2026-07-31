@@ -21,8 +21,7 @@ export default function Pricing() {
                 className="h-full"
                 imgClassName="transition-transform duration-[1.4s] ease-out hover:scale-105"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 rounded-full bg-white/15 px-4 py-2 text-sm text-white backdrop-blur">
+                <div className="absolute bottom-6 left-6 rounded-full border border-line-2 bg-surface/90 px-4 py-2 text-sm font-medium text-ink backdrop-blur">
                   Skladem
                 </div>
               </ProductImage>
