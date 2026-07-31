@@ -3,7 +3,7 @@ import { company, addressLine, legalLinks } from "@/lib/company";
 
 const nav = [
   { label: "Domů", href: "/" },
-  { label: "Produkt", href: "/#buy" },
+  { label: "Produkt", href: "/#top" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 

@@ -9,7 +9,6 @@ import InBox from "@/components/InBox";
 import Specs from "@/components/Specs";
 import Testimonials from "@/components/Testimonials";
 import WhyBuy from "@/components/WhyBuy";
-import Pricing from "@/components/Pricing";
 import Faq from "@/components/Faq";
 
 export default function Home() {
@@ -26,7 +25,6 @@ export default function Home() {
       <Specs />
       <Testimonials />
       <WhyBuy />
-      <Pricing />
       <Faq />
     </main>
   );
