@@ -285,8 +285,8 @@ body {
 
 /* ---- Brand „probuzení produktu" (≤1 s, jen CSS transform/opacity) ---- */
 @keyframes wakeZoom {
-  from { transform: scale(1.035); }
-  to { transform: scale(1); }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 @keyframes wakeReveal {
   from { opacity: 0; transform: translateY(16px); }
@@ -302,7 +302,7 @@ body {
   100% { opacity: 0.78; transform: scale(1.05); }
 }
 
-.hero-wake { animation: wakeZoom 0.9s var(--ease-out-soft) both; will-change: transform; }
+.hero-wake { animation: wakeZoom 0.8s var(--ease-out-soft) both; will-change: transform, opacity; }
 .hero-reveal {
   opacity: 0;
   animation: wakeReveal 0.8s var(--ease-out-soft) var(--hr-delay, 0s) both;
@@ -338,7 +338,7 @@ body {
   .reveal, .img-reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
   .mbtn { transition: none !important; }
   .mbtn:hover, .mbtn:active { --mbs: 1; }
-  .hero-wake { animation: none !important; transform: none !important; }
+  .hero-wake { animation: none !important; transform: none !important; opacity: 1 !important; }
   .hero-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
   .eye-cover { animation: none !important; opacity: 0 !important; }
   .eye-glow { animation: none !important; opacity: 0.75 !important; transform: scale(1) !important; }

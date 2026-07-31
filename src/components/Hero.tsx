@@ -21,8 +21,6 @@ const SPRING_FOLLOW = { stiffness: 90, damping: 20, mass: 0.7 } as const;
 const SPRING_SPOT = { stiffness: 110, damping: 20, mass: 0.5 } as const;
 const SPRING_SCROLL = { stiffness: 80, damping: 26, restDelta: 0.0004 } as const;
 
-const headlineWords = ["Nejchytřejší", "způsob,", "jak", "mít", "čistý", "stůl."];
-
 /* deterministický PRNG → žádný hydration mismatch */
 function mulberry32(seed: number) {
   return () => {
@@ -91,14 +89,14 @@ export default function Hero() {
   /* částice */
   const motes = useMemo(() => {
     const rand = mulberry32(20260725);
-    return Array.from({ length: 26 }, (_, i) => ({
+    return Array.from({ length: 14 }, (_, i) => ({
       id: i,
       left: rand() * 100,
       top: rand() * 100,
-      size: 2 + rand() * 4,
-      dur: 9 + rand() * 11,
+      size: 2 + rand() * 3,
+      dur: 10 + rand() * 12,
       delay: rand() * 8,
-      opacity: 0.12 + rand() * 0.3,
+      opacity: 0.08 + rand() * 0.16,
     }));
   }, []);
 
@@ -170,16 +168,16 @@ export default function Hero() {
           Představujeme Cleaner
         </span>
 
-        {/* hlavní nadpis — elegantně se objeví během probuzení */}
+        {/* hlavní nadpis — extra bold, druhá řádka v modrém gradientu */}
         <h1
-          className="hero-reveal flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl"
+          className="hero-reveal text-balance text-5xl font-black leading-[1.02] tracking-[-0.03em] text-ink sm:text-6xl lg:text-7xl"
           style={{ "--hr-delay": "0.25s" } as CSSProperties}
         >
-          {headlineWords.map((w, i) => (
-            <span key={i} className={i >= 4 ? "text-sky-deep" : ""}>
-              {w}
-            </span>
-          ))}
+          Nejchytřejší způsob, jak mít
+          <br />
+          <span className="bg-gradient-to-b from-[#3f6ae6] to-[#6f97f0] bg-clip-text text-transparent">
+            čistý stůl.
+          </span>
         </h1>
 
         {/* produkt */}
@@ -198,7 +196,7 @@ export default function Hero() {
 
         {/* subheadline */}
         <p
-          className="hero-reveal max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+          className="hero-reveal max-w-[700px] text-base leading-relaxed text-muted sm:text-lg"
           style={{ "--hr-delay": "0.5s" } as CSSProperties}
         >
           Stolní vysavač do dlaně, který drobky, prach i nečistoty zvládne
@@ -210,7 +208,7 @@ export default function Hero() {
           className="hero-reveal flex flex-col items-center gap-3 sm:flex-row"
           style={{ "--hr-delay": "0.62s" } as CSSProperties}
         >
-          <BuyButton variant="primary">
+          <BuyButton variant="primary" className="!px-8 !py-[18px] !text-[1.02rem]">
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <circle cx="9" cy="20" r="1.4" />
               <circle cx="18" cy="20" r="1.4" />
@@ -218,7 +216,7 @@ export default function Hero() {
             </svg>
             Objednat nyní – {priceLabel}
           </BuyButton>
-          <MagneticButton href="#how" variant="ghost">
+          <MagneticButton href="#how" variant="ghost" className="!px-8 !py-[18px] !text-[1.02rem]">
             Jak to funguje
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </MagneticButton>
@@ -305,7 +303,7 @@ function ProductStage({
           >
             {/* náklon za myší */}
             <motion.div style={{ rotateX: rotX, rotateY: rotY }} className="relative [transform-style:preserve-3d] will-change-transform">
-              <div className="relative aspect-square h-[clamp(168px,29vh,320px)] w-auto">
+              <div className="relative aspect-square h-[clamp(240px,40vh,460px)] w-auto">
                 <Image
                   src={images.hero}
                   alt="Stolní vysavač Cleaner"
