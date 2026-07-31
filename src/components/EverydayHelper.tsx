@@ -61,12 +61,11 @@ export default function EverydayHelper() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Každodenní pomocník</p>
           <h2 className="mt-4 font-display text-4xl leading-tight tracking-tight sm:text-5xl">
-            Malý pomocník pro každodenní nepořádek
+            Po ruce na každý malý nepořádek
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
-            Cleaner uklidí drobky, prach i drobné nečistoty za pár sekund. Mějte ho po ruce
-            na stole, v kanceláři, doma i v autě. Není náhradou velkého vysavače — je rychlý
-            pomocník pro každý den.
+            Na stole, v kanceláři, doma i v autě — posbírá drobky a prach během chvíle.
+            Není náhradou velkého vysavače, ale je vždy po ruce, když je potřeba.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2.5 text-sm text-ink-2">
             <span className="rounded-full border border-line-2 bg-surface px-3.5 py-1.5">Jedno tlačítko</span>

@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 const benefits = [
   {
     title: "Rychlé a efektivní čištění",
-    body: "Uklidí drobky, prach i nečistoty během pár vteřin.",
+    body: "Stačí přejet po stole a je uklizeno — rychle a bez námahy.",
     icon: <path d="M13 3L4 14h6l-1 7 9-11h-6z" />,
   },
   {
