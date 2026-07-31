@@ -4,7 +4,6 @@ import Marquee from "@/components/Marquee";
 import Benefits from "@/components/Benefits";
 import HowItWorks from "@/components/HowItWorks";
 import EverydayHelper from "@/components/EverydayHelper";
-import Surfaces from "@/components/Surfaces";
 import Reassure from "@/components/Reassure";
 import InBox from "@/components/InBox";
 import Specs from "@/components/Specs";
@@ -22,7 +21,6 @@ export default function Home() {
       <Benefits />
       <HowItWorks />
       <EverydayHelper />
-      <Surfaces />
       <Reassure />
       <InBox />
       <Specs />

@@ -35,8 +35,6 @@ export const priceLabel = `${price.amount} ${price.currency}`;
 export const images = {
   hero: "/images/hero.webp", // hlavní fotka, poměr 4:5
   product1: "/images/product-1.webp", // detail / úhel 1, 4:3
-  product2: "/images/product-2.webp", // detail / úhel 2, 1:1
-  product3: "/images/product-3.webp", // detail / úhel 3, 1:1
   detail1: "/images/detail-1.webp", // tichý chod, 4:3
   detail2: "/images/detail-2.webp", // nabíjení / baterie, 4:3
   gallery1: "/images/gallery-1.webp", // lifestyle záběr, 4:5
