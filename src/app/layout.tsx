@@ -4,8 +4,8 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 
-// TODO: nastavte finální doménu e-shopu (kvůli správným odkazům pro sdílení / OG).
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cleaner.cz";
+// Finální doména e-shopu (OG / canonical). Lze přepsat env proměnnou NEXT_PUBLIC_SITE_URL.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cleanner.cz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
