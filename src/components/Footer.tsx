@@ -49,7 +49,7 @@ export default function Footer() {
               opakovaně použitelný a vždy po ruce.
             </p>
             <div className="mt-5 flex gap-2.5">
-              {socials.map((s) => (
+              {socials.filter((s) => s.href).map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
@@ -103,12 +103,15 @@ export default function Footer() {
                   {company.email}
                 </a>
               </li>
-              <li>
-                <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-ink">
-                  {company.phone}
-                </a>
-              </li>
+              {company.phone && (
+                <li>
+                  <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-ink">
+                    {company.phone}
+                  </a>
+                </li>
+              )}
               <li>IČO: {company.ico}</li>
+              <li>DIČ: {company.dic}</li>
               <li className="max-w-[16rem] leading-relaxed">{addressLine}</li>
             </ul>
           </div>

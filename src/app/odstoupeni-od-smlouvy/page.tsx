@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 import SellerInfo from "@/components/SellerInfo";
+import { company, addressLine } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Odstoupení od smlouvy",
@@ -13,11 +14,6 @@ export default function Page() {
       title="Odstoupení od smlouvy"
       intro="Jako spotřebitel máte právo odstoupit od smlouvy do 14 dnů bez udání důvodu."
     >
-      <p>
-        Tento text je <strong>strukturovaný vzor</strong> — doplňte označená místa a ověřte
-        u právníka.
-      </p>
-
       <SellerInfo />
 
       <h2>1. Lhůta pro odstoupení</h2>
@@ -28,9 +24,9 @@ export default function Page() {
 
       <h2>2. Jak odstoupit</h2>
       <ul>
-        <li>Zašlete jednoznačné oznámení na e-mail <span className="todo">[DOPLŇTE e-mail]</span> nebo poštou na adresu sídla.</li>
+        <li>Zašlete jednoznačné oznámení na e-mail {company.email} nebo poštou na adresu sídla.</li>
         <li>Můžete využít vzorový formulář níže.</li>
-        <li>Zboží vraťte na adresu: <span className="todo">[DOPLŇTE adresu pro vrácení]</span>.</li>
+        <li>Zboží vraťte na adresu: {addressLine}.</li>
       </ul>
 
       <h2>3. Vrácení peněz</h2>
@@ -43,13 +39,13 @@ export default function Page() {
 
       <h2>4. Náklady na vrácení a stav zboží</h2>
       <ul>
-        <li>Náklady na vrácení zboží nese kupující. <span className="todo">[DOPLŇTE, pokud hradíte vy]</span></li>
+        <li>Náklady na vrácení zboží nese kupující.</li>
         <li>Kupující odpovídá za snížení hodnoty zboží v důsledku nakládání nad rámec vyzkoušení.</li>
       </ul>
 
       <h2>5. Vzorový formulář pro odstoupení</h2>
       <p className="not-prose rounded-2xl border border-line-2 bg-surface/60 p-5 text-sm text-muted">
-        Adresát: <span className="todo">[DOPLŇTE jméno a adresu prodávajícího]</span>
+        Adresát: {company.legalName}, {addressLine}
         <br />
         Oznamuji, že tímto odstupuji od smlouvy o nákupu tohoto zboží: …………………………
         <br />

@@ -25,12 +25,12 @@ export default function Page() {
           Nevyžadují souhlas.
         </li>
         <li>
-          <strong>Analytické</strong> — pomáhají nám rozumět používání webu.{" "}
-          <span className="todo">[DOPLŇTE nástroj, např. Google Analytics]</span>
+          <strong>Analytické</strong> — pomáhají nám rozumět používání webu. V současné době
+          analytické cookies nepoužíváme; pokud je zavedeme, pouze s vaším souhlasem.
         </li>
         <li>
-          <strong>Marketingové</strong> — pro cílení reklamy.{" "}
-          <span className="todo">[DOPLŇTE nástroje, např. Meta Pixel]</span>
+          <strong>Marketingové</strong> — pro cílení reklamy. V současné době marketingové
+          cookies nepoužíváme; pokud je zavedeme, pouze s vaším souhlasem.
         </li>
       </ul>
 
@@ -49,7 +49,9 @@ export default function Page() {
 
       <h2>5. Doba uložení</h2>
       <p>
-        Doba uložení se liší podle typu cookie. <span className="todo">[DOPLŇTE konkrétní doby]</span>
+        Doba uložení se liší podle typu cookie. Nezbytné cookies trvají po dobu relace nebo
+        do vypršení jejich platnosti; váš souhlas se zpracováním cookies uchováváme zpravidla
+        po dobu 12 měsíců.
       </p>
     </LegalLayout>
   );

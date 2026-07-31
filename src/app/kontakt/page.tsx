@@ -4,16 +4,30 @@ import { company, addressLine } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Kontakt",
-  description: "Kontaktujte českou podporu e-shopu Cleaner — e-mail, telefon a kontaktní formulář.",
+  description: "Kontaktujte českou podporu e-shopu Cleaner — e-mail a kontaktní formulář.",
 };
 
 const details = [
   {
-    label: "Telefon",
-    value: company.phone,
-    href: `tel:${company.phone.replace(/\s/g, "")}`,
-    icon: <path d="M4 5c0 8 7 15 15 15l2-3-4-2-2 2a13 13 0 0 1-6-6l2-2-2-4z" />,
+    label: "Provozovatel",
+    value: company.legalName,
+    icon: (
+      <>
+        <circle cx="12" cy="8" r="3.5" />
+        <path d="M5 20a7 7 0 0 1 14 0" />
+      </>
+    ),
   },
+  ...(company.phone
+    ? [
+        {
+          label: "Telefon",
+          value: company.phone,
+          href: `tel:${company.phone.replace(/\s/g, "")}`,
+          icon: <path d="M4 5c0 8 7 15 15 15l2-3-4-2-2 2a13 13 0 0 1-6-6l2-2-2-4z" />,
+        },
+      ]
+    : []),
   {
     label: "E-mail",
     value: company.email,
@@ -28,6 +42,16 @@ const details = [
   {
     label: "IČO",
     value: company.ico,
+    icon: (
+      <>
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <path d="M9 9h6M9 12h6M9 15h4" />
+      </>
+    ),
+  },
+  {
+    label: "DIČ",
+    value: company.dic,
     icon: (
       <>
         <rect x="4" y="4" width="16" height="16" rx="2" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 import SellerInfo from "@/components/SellerInfo";
+import { company, addressLine } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Reklamační řád",
@@ -13,11 +14,6 @@ export default function Page() {
       title="Reklamační řád"
       intro="Postup pro uplatnění práv z vadného plnění (reklamace) zakoupeného zboží."
     >
-      <p>
-        Tento reklamační řád je <strong>strukturovaný vzor</strong> — doplňte označená místa a
-        ověřte u právníka podle platné legislativy.
-      </p>
-
       <SellerInfo />
 
       <h2>1. Odpovědnost za vady</h2>
@@ -29,8 +25,8 @@ export default function Page() {
 
       <h2>2. Jak reklamaci uplatnit</h2>
       <ul>
-        <li>Kontaktujte nás na <span className="todo">[DOPLŇTE e-mail]</span> s popisem vady a číslem objednávky.</li>
-        <li>Zboží zašlete na adresu: <span className="todo">[DOPLŇTE reklamační adresu]</span>.</li>
+        <li>Kontaktujte nás na {company.email} s popisem vady a číslem objednávky.</li>
+        <li>Zboží zašlete na adresu: {addressLine}.</li>
         <li>Přiložte doklad o koupi a pokud možno fotografie vady.</li>
       </ul>
 
@@ -50,11 +46,11 @@ export default function Page() {
       <h2>5. Náklady na reklamaci</h2>
       <p>
         Při oprávněné reklamaci má kupující nárok na náhradu účelně vynaložených nákladů na
-        dopravu zboží. <span className="todo">[DOPLŇTE případné podrobnosti / limit]</span>
+        dopravu zboží.
       </p>
 
       <hr />
-      <p>Reklamační řád nabývá účinnosti dne <span className="todo">[DOPLŇTE datum]</span>.</p>
+      <p>Reklamační řád nabývá účinnosti dne {company.effectiveDate}.</p>
     </LegalLayout>
   );
 }

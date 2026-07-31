@@ -1,30 +1,33 @@
 /* ============================================================================
  * FIREMNÍ, KONTAKTNÍ A PRÁVNÍ ÚDAJE — JEDINÝ ZDROJ PRAVDY
  * ----------------------------------------------------------------------------
- * Doplňte reálné hodnoty na místech označených [DOPLŇTE …] (TODO).
- * Používá to patička, kontaktní stránka, právní stránky i souhrn objednávky.
+ * Identifikační údaje provozovatele. Používá to patička, kontaktní stránka,
+ * právní stránky i souhrn objednávky. Změna se propíše všude.
  * ========================================================================== */
 
 export const company = {
   brand: "Cleaner",
-  legalName: "[DOPLŇTE obchodní jméno / jméno OSVČ]", // TODO
-  ico: "[DOPLŇTE IČO]", // TODO
-  dic: "[DOPLŇTE DIČ / „Nejsme plátci DPH“]", // TODO
+  legalName: "Robin Konečný",
+  ico: "19950713",
+  dic: "Neplátce DPH",
   registration:
-    "[DOPLŇTE zápis — např. „zapsáno v živnostenském rejstříku“ nebo spisová značka u rejstříkového soudu]", // TODO
+    "Fyzická osoba podnikající zapsaná v živnostenském rejstříku.",
   address: {
-    street: "[DOPLŇTE ulice a č. p.]", // TODO
-    city: "[DOPLŇTE město]", // TODO
-    zip: "[DOPLŇTE PSČ]", // TODO
+    street: "Zelinova 5589",
+    city: "Zlín",
+    zip: "760 05",
     country: "Česká republika",
   },
-  email: "[DOPLŇTE e-mail]", // TODO – např. info@cleaner.cz
-  phone: "[DOPLŇTE telefon]", // TODO – např. +420 …
+  email: "robinkonecny1@seznam.cz",
+  phone: "", // nezadáno – kontakt probíhá e-mailem
+  website: "cleanner.cz",
+  effectiveDate: "31. 7. 2026",
   supportHours: "Po–Pá 9:00–17:00",
+  // Doplňte reálné odkazy, jakmile budou účty. Prázdné = v patičce se nezobrazí.
   social: {
-    instagram: "[DOPLŇTE odkaz na Instagram]", // TODO
-    facebook: "[DOPLŇTE odkaz na Facebook]", // TODO
-    tiktok: "[DOPLŇTE odkaz na TikTok]", // TODO
+    instagram: "",
+    facebook: "",
+    tiktok: "",
   },
 };
 
@@ -36,7 +39,7 @@ export const shipping = {
   priceLabel: "Zdarma", // TODO: ověřit (nebo doplnit částku, např. „79 Kč")
   isFree: true, // TODO
   deliveryDays: "3–5 pracovních dnů",
-  carrier: "[DOPLŇTE dopravce]", // TODO – např. Zásilkovna / PPL / Česká pošta
+  carrier: "", // dopravce a cena se zobrazí v pokladně (Shopify checkout)
   returnDays: 14, // zákonná lhůta pro spotřebitele
 };
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 import SellerInfo from "@/components/SellerInfo";
+import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Ochrana osobních údajů (GDPR)",
@@ -13,11 +14,6 @@ export default function Page() {
       title="Ochrana osobních údajů"
       intro="Zásady zpracování osobních údajů podle nařízení (EU) 2016/679 (GDPR)."
     >
-      <p>
-        Tento dokument je <strong>strukturovaný vzor</strong> — doplňte konkrétní zpracovatele
-        a nastavení a ověřte u odborníka.
-      </p>
-
       <h2>1. Správce údajů</h2>
       <SellerInfo />
 
@@ -32,19 +28,20 @@ export default function Page() {
       <ul>
         <li>Vyřízení objednávky a plnění smlouvy (čl. 6 odst. 1 písm. b GDPR).</li>
         <li>Plnění zákonných povinností, např. účetnictví (písm. c).</li>
-        <li>Marketing na základě souhlasu (písm. a). <span className="todo">[DOPLŇTE, zda využíváte]</span></li>
+        <li>Marketing pouze na základě výslovného souhlasu (písm. a); souhlas lze kdykoli odvolat.</li>
       </ul>
 
       <h2>4. Doba uchování</h2>
       <p>
         Údaje uchováváme po dobu nezbytnou k naplnění účelu a po dobu stanovenou právními
-        předpisy. <span className="todo">[DOPLŇTE konkrétní doby]</span>
+        předpisy — účetní a daňové doklady zejména po dobu vyžadovanou zákonem (až 10 let).
       </p>
 
       <h2>5. Příjemci a zpracovatelé</h2>
       <p>
         Údaje mohou být předány zpracovatelům, kteří pro nás zajišťují provoz e-shopu, dopravu
-        a platby: <span className="todo">[DOPLŇTE — dopravce, platební brána, e-mailing, analytika…]</span>
+        a platby — zejména poskytovateli e-shopové platformy a platební brány, přepravní
+        společnosti a poskytovateli e-mailových služeb.
       </p>
 
       <h2>6. Vaše práva</h2>
@@ -57,7 +54,7 @@ export default function Page() {
 
       <h2>7. Kontakt</h2>
       <p>
-        Se svými dotazy se obracejte na <span className="todo">[DOPLŇTE e-mail]</span>.
+        Se svými dotazy se obracejte na {company.email}.
       </p>
     </LegalLayout>
   );

@@ -12,7 +12,8 @@ export default function SellerInfo() {
         <li>DIČ: {company.dic}</li>
         <li>{company.registration}</li>
         <li>
-          E-mail: {company.email} · Telefon: {company.phone}
+          E-mail: {company.email}
+          {company.phone ? ` · Telefon: ${company.phone}` : ""}
         </li>
       </ul>
     </div>
