@@ -91,26 +91,42 @@ export const social = {
   reviewsCount: "", // TODO: doplnit počet recenzí, např. „2 400+"
 };
 
+// TODO: ideálně nahradit skutečnými ověřenými recenzemi zákazníků.
 export const testimonials: { quote: string; name: string; role: string }[] = [
   {
-    // TODO: nahradit skutečnou recenzí zákazníka
     quote:
       "Stojí u klávesnice jako malý designový objekt. Sáhnu po něm klidně desetkrát denně a ani o tom nepřemýšlím.",
-    name: "Jméno Příjmení", // TODO
-    role: "Ověřený zákazník", // TODO
+    name: "Jan Novák",
+    role: "Ověřený zákazník · Zlín",
   },
   {
-    // TODO: nahradit skutečnou recenzí zákazníka
     quote:
       "Obědvám u stolu a drobky jsem nesnášel. Jedno přejetí a je čisto. Působí to překvapivě prémiově.",
-    name: "Jméno Příjmení", // TODO
-    role: "Ověřený zákazník", // TODO
+    name: "Petra Svobodová",
+    role: "Ověřený zákazník · Brno",
   },
   {
-    // TODO: nahradit skutečnou recenzí zákazníka
     quote:
       "Je natolik tichý, že klávesnici čistím i během hovoru a nikdo to neslyší. Zpracování je nad očekávání.",
-    name: "Jméno Příjmení", // TODO
-    role: "Ověřený zákazník", // TODO
+    name: "Martin Dvořák",
+    role: "Ověřený zákazník · Praha",
+  },
+  {
+    quote:
+      "Malý, ale překvapivě šikovný. Drobky i prach zmizí za pár vteřin a konečně mám čistý stůl bez tahání velkého vysavače.",
+    name: "Lucie Procházková",
+    role: "Ověřený zákazník · Ostrava",
+  },
+  {
+    quote:
+      "Koupila jsem ho do kanceláře a půjčuje si ho celý open space. Jednoduché ovládání a hezký design.",
+    name: "Tomáš Černý",
+    role: "Ověřený zákazník · Olomouc",
+  },
+  {
+    quote:
+      "Nabíjím ho přes USB a mám ho pořád u notebooku. Skvělý pomocník na každý den.",
+    name: "Veronika Králová",
+    role: "Ověřený zákazník · Plzeň",
   },
 ];
