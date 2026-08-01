@@ -3,6 +3,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import Analytics from "@/components/Analytics";
 
 // Finální doména e-shopu (OG / canonical). Lze přepsat env proměnnou NEXT_PUBLIC_SITE_URL.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cleanner.cz";
@@ -63,6 +64,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );
