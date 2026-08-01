@@ -25,8 +25,8 @@ export default function Page() {
           Nevyžadují souhlas.
         </li>
         <li>
-          <strong>Analytické</strong> — pomáhají nám rozumět používání webu. V současné době
-          analytické cookies nepoužíváme; pokud je zavedeme, pouze s vaším souhlasem.
+          <strong>Analytické</strong> — pro měření návštěvnosti používáme Google Analytics 4
+          (gtag.js). Pomáhá nám rozumět tomu, jak je web používán, a dále ho zlepšovat.
         </li>
         <li>
           <strong>Marketingové</strong> — pro cílení reklamy. V současné době marketingové
@@ -34,11 +34,12 @@ export default function Page() {
         </li>
       </ul>
 
-      <h2>3. Souhlas</h2>
+      <h2>3. Souhlas a odmítnutí</h2>
       <p>
-        Analytické a marketingové cookies používáme jen s vaším souhlasem, který udělujete přes
-        cookie lištu. Souhlas můžete kdykoli změnit nebo odvolat vymazáním cookies ve vašem
-        prohlížeči.
+        Nezbytné cookies nevyžadují souhlas. Analytické cookies Google Analytics slouží pouze
+        k měření návštěvnosti a jejich používání můžete kdykoli odmítnout — vymazáním nebo
+        zablokováním cookies ve vašem prohlížeči, případně pomocí oficiálního doplňku Google
+        pro odhlášení z Google Analytics. Marketingové cookies nepoužíváme.
       </p>
 
       <h2>4. Jak cookies spravovat</h2>
